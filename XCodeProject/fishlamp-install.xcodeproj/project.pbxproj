@@ -1,0 +1,162 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		27AD491F17A471F300D85D21 /* Run Install Script */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27AD492017A471F300D85D21 /* Build configuration list for PBXAggregateTarget "Run Install Script" */;
+			buildPhases = (
+				27AD492717A4735100D85D21 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Run Install Script";
+			productName = "Run Install Script";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXFileReference section */
+		27AD492417A471FE00D85D21 /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = install.sh; path = ../install.sh; sourceTree = "<group>"; };
+		27AD492E17A48D1500D85D21 /* update-submodule.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "update-submodule.sh"; sourceTree = "<group>"; };
+		27AD492F17A48D1500D85D21 /* init.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = init.sh; sourceTree = "<group>"; };
+		27AD493017A48D1500D85D21 /* new-repo.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "new-repo.sh"; sourceTree = "<group>"; };
+		27AD493117A48D1500D85D21 /* submodules.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = submodules.sh; sourceTree = "<group>"; };
+		27AD493817A48D1500D85D21 /* fishlamp.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fishlamp.sh; sourceTree = "<group>"; };
+		27AD493917A48D9E00D85D21 /* help.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = help.sh; sourceTree = "<group>"; };
+		27AD493A17A48F5000D85D21 /* update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update.sh; sourceTree = "<group>"; };
+		27AD493B17A492CE00D85D21 /* find.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = find.sh; sourceTree = "<group>"; };
+		27AD493C17A4957B00D85D21 /* fishlamp-script-installer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "fishlamp-script-installer.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		27AD491817A471E100D85D21 = {
+			isa = PBXGroup;
+			children = (
+				27AD492517A4731900D85D21 /* Scripts */,
+				27AD492417A471FE00D85D21 /* install.sh */,
+			);
+			sourceTree = "<group>";
+		};
+		27AD492517A4731900D85D21 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				27AD492D17A48D1500D85D21 /* commands */,
+				27AD493817A48D1500D85D21 /* fishlamp.sh */,
+				27AD493C17A4957B00D85D21 /* fishlamp-script-installer.sh */,
+			);
+			name = Scripts;
+			path = ../Scripts;
+			sourceTree = "<group>";
+		};
+		27AD492D17A48D1500D85D21 /* commands */ = {
+			isa = PBXGroup;
+			children = (
+				27AD493B17A492CE00D85D21 /* find.sh */,
+				27AD493917A48D9E00D85D21 /* help.sh */,
+				27AD492E17A48D1500D85D21 /* update-submodule.sh */,
+				27AD492F17A48D1500D85D21 /* init.sh */,
+				27AD493A17A48F5000D85D21 /* update.sh */,
+				27AD493017A48D1500D85D21 /* new-repo.sh */,
+				27AD493117A48D1500D85D21 /* submodules.sh */,
+			);
+			path = commands;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		27AD491917A471E100D85D21 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
+			buildConfigurationList = 27AD491C17A471E100D85D21 /* Build configuration list for PBXProject "fishlamp-install" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 27AD491817A471E100D85D21;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27AD491F17A471F300D85D21 /* Run Install Script */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27AD492717A4735100D85D21 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"$PROJECT_DIR/../install.sh\"";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		27AD491D17A471E100D85D21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27AD491E17A471E100D85D21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27AD492117A471F300D85D21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		27AD492217A471F300D85D21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27AD491C17A471E100D85D21 /* Build configuration list for PBXProject "fishlamp-install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AD491D17A471E100D85D21 /* Debug */,
+				27AD491E17A471E100D85D21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27AD492017A471F300D85D21 /* Build configuration list for PBXAggregateTarget "Run Install Script" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AD492117A471F300D85D21 /* Debug */,
+				27AD492217A471F300D85D21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27AD491917A471E100D85D21 /* Project object */;
+}
