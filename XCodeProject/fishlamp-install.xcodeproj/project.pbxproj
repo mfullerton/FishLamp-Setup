@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXFileReference section */
+		27751F8017AD949500447326 /* FishLamp.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = FishLamp.py; sourceTree = "<group>"; };
 		27AD492417A471FE00D85D21 /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = install.sh; path = ../install.sh; sourceTree = "<group>"; };
 		27AD492E17A48D1500D85D21 /* update-submodule.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "update-submodule.sh"; sourceTree = "<group>"; };
 		27AD492F17A48D1500D85D21 /* init.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = init.sh; sourceTree = "<group>"; };
@@ -31,12 +32,26 @@
 		27AD493A17A48F5000D85D21 /* update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update.sh; sourceTree = "<group>"; };
 		27AD493B17A492CE00D85D21 /* find.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = find.sh; sourceTree = "<group>"; };
 		27AD493C17A4957B00D85D21 /* fishlamp-script-installer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "fishlamp-script-installer.sh"; sourceTree = "<group>"; };
+		27F97BC517AD602900DE3BE0 /* pieces.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pieces.py; sourceTree = "<group>"; };
+		27F97BC617AD659100DE3BE0 /* scripts-path.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "scripts-path.sh"; sourceTree = "<group>"; };
+		27F97BC717AD717700DE3BE0 /* scratch-pad.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "scratch-pad.sh"; sourceTree = "<group>"; };
+		27F97BC817AD718D00DE3BE0 /* scratch-pad.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "scratch-pad.py"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		27751F7B17AD92AF00447326 /* FishLampShared */ = {
+			isa = PBXGroup;
+			children = (
+				27751F8017AD949500447326 /* FishLamp.py */,
+			);
+			path = FishLampShared;
+			sourceTree = "<group>";
+		};
 		27AD491817A471E100D85D21 = {
 			isa = PBXGroup;
 			children = (
+				27F97BC817AD718D00DE3BE0 /* scratch-pad.py */,
+				27F97BC717AD717700DE3BE0 /* scratch-pad.sh */,
 				27AD492517A4731900D85D21 /* Scripts */,
 				27AD492417A471FE00D85D21 /* install.sh */,
 			);
@@ -45,6 +60,7 @@
 		27AD492517A4731900D85D21 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				27751F7B17AD92AF00447326 /* FishLampShared */,
 				27AD492D17A48D1500D85D21 /* commands */,
 				27AD493817A48D1500D85D21 /* fishlamp.sh */,
 				27AD493C17A4957B00D85D21 /* fishlamp-script-installer.sh */,
@@ -63,6 +79,8 @@
 				27AD493A17A48F5000D85D21 /* update.sh */,
 				27AD493017A48D1500D85D21 /* new-repo.sh */,
 				27AD493117A48D1500D85D21 /* submodules.sh */,
+				27F97BC517AD602900DE3BE0 /* pieces.py */,
+				27F97BC617AD659100DE3BE0 /* scripts-path.sh */,
 			);
 			path = commands;
 			sourceTree = "<group>";

@@ -36,8 +36,9 @@ for file in $FILES; do
     dest="$DEST_PATH/$file"
     
     extension=${file##*.}
-    if [[ "$extension" == "sh" ]]; then
-        filename_no_extension=`basename "$file" .sh`
+
+    if [[ "$extension" == "sh" ]] || [[ "$extension" == "py" ]]; then
+        filename_no_extension=`basename "$file" .$extension`
         dest="$DEST_PATH/$filename_no_extension"
     fi
 

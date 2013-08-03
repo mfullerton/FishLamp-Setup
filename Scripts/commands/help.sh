@@ -24,9 +24,9 @@ cd "$INSTALL_PATH/commands"
 FILES=`ls`
 for file in $FILES; do
     extension=${file##*.}
-    filename_no_extension=`basename "$file" .sh`
 
-    if [[ "$extension" == "sh" ]]; then
+    if [[ "$extension" == "sh" ]] || [[ "$extension" == "py" ]]; then
+        filename_no_extension=`basename "$file" .$extension`
 
         if [[ "$PARM" != "-s" ]]; then
             echo "fishlamp $filename_no_extension:"

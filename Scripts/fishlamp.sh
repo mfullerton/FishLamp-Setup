@@ -23,14 +23,31 @@ if [ "$1" == "" ]; then
     exit 1
 fi
 
+DEBUG=0
+
+function dout() {
+    if [ $DEBUG == 1 ]; then
+        echo "$1"
+    fi
+}
+
 MY_COMMAND="$1"
-MY_SCRIPT="$MY_COMMAND.sh"
+dout "Command is: $MY_COMMAND"
+
+dout "find \"$SUB_PATH\" -name \"$MY_COMMAND*\""
+
+MY_SCRIPT=`find "$SUB_PATH" -name "$MY_COMMAND*"`
+
+dout "Script: $MY_SCRIPT"
+
 MY_PARMS=${*:2}
+dout "Parms: $MY_PARMS"
 
 # echo "command = $MY_COMMAND $PARMS"
 
-if [ -f "$SUB_PATH/$MY_SCRIPT" ]; then
-    "$SUB_PATH/$MY_SCRIPT" $MY_PARMS
+if [ -f "$MY_SCRIPT" ]; then
+    dout "$MY_SCRIPT\" $MY_PARMS"
+    "$MY_SCRIPT" $MY_PARMS
 else
     echo "unknown command \"$MY_COMMAND\""
     exit 1
