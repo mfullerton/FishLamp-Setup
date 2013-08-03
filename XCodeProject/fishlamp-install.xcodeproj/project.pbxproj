@@ -22,14 +22,15 @@
 
 /* Begin PBXFileReference section */
 		27751F8017AD949500447326 /* FishLamp.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = FishLamp.py; sourceTree = "<group>"; };
+		27751F8117ADA64600447326 /* install-xcode-configs.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "install-xcode-configs.py"; sourceTree = "<group>"; };
 		27AD492417A471FE00D85D21 /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = install.sh; path = ../install.sh; sourceTree = "<group>"; };
 		27AD492E17A48D1500D85D21 /* update-submodule.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "update-submodule.sh"; sourceTree = "<group>"; };
-		27AD492F17A48D1500D85D21 /* init.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = init.sh; sourceTree = "<group>"; };
+		27AD492F17A48D1500D85D21 /* init-repo.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "init-repo.sh"; sourceTree = "<group>"; };
 		27AD493017A48D1500D85D21 /* new-repo.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "new-repo.sh"; sourceTree = "<group>"; };
 		27AD493117A48D1500D85D21 /* submodules.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = submodules.sh; sourceTree = "<group>"; };
 		27AD493817A48D1500D85D21 /* fishlamp.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fishlamp.sh; sourceTree = "<group>"; };
 		27AD493917A48D9E00D85D21 /* help.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = help.sh; sourceTree = "<group>"; };
-		27AD493A17A48F5000D85D21 /* update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update.sh; sourceTree = "<group>"; };
+		27AD493A17A48F5000D85D21 /* update-repo.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "update-repo.sh"; sourceTree = "<group>"; };
 		27AD493B17A492CE00D85D21 /* find.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = find.sh; sourceTree = "<group>"; };
 		27AD493C17A4957B00D85D21 /* fishlamp-script-installer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "fishlamp-script-installer.sh"; sourceTree = "<group>"; };
 		27F97BC517AD602900DE3BE0 /* pieces.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = pieces.py; sourceTree = "<group>"; };
@@ -75,12 +76,13 @@
 				27AD493B17A492CE00D85D21 /* find.sh */,
 				27AD493917A48D9E00D85D21 /* help.sh */,
 				27AD492E17A48D1500D85D21 /* update-submodule.sh */,
-				27AD492F17A48D1500D85D21 /* init.sh */,
-				27AD493A17A48F5000D85D21 /* update.sh */,
+				27AD492F17A48D1500D85D21 /* init-repo.sh */,
+				27AD493A17A48F5000D85D21 /* update-repo.sh */,
 				27AD493017A48D1500D85D21 /* new-repo.sh */,
 				27AD493117A48D1500D85D21 /* submodules.sh */,
 				27F97BC517AD602900DE3BE0 /* pieces.py */,
 				27F97BC617AD659100DE3BE0 /* scripts-path.sh */,
+				27751F8117ADA64600447326 /* install-xcode-configs.py */,
 			);
 			path = commands;
 			sourceTree = "<group>";

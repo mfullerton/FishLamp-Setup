@@ -18,15 +18,24 @@ def enableVerbose():
     gVerbose = True;
     print "--Verbose"
 
-def assertPath(path):
+def assertPathExists(path):
     if os.path.exists(path):
         verbose("Found path:" + path)
+        return path;
     else:
         print "Path not found: " + path;
         sys.exit(1);
 
+def assertNotNone(item, msg):
+    if item is None:
+        print "unexpected None value: " + msg
+        sys.exit(1);
+    return item;
+
 class Piece:
     _piece = 0;
+
+    _folder = ""
 
     def name(self):
         return self._piece['pieceName'];
@@ -34,22 +43,42 @@ class Piece:
     def description(self):
         return self._piece['shortDescription']
 
+    def folderPath(self):
+        return self._folder;
+
+    def allPaths(self):
+        paths = []
+        for path in self._piece['importPaths'].split(','):
+            paths.append(os.path.join(self.name(), path.strip()));
+        return paths;
+
     def printSelf(self):
         print "Piece Name: " + self.name();
+        print "Piece folder: " + self.folderPath();
         print "Description: " + self.description();
+        print "Paths: "
+        for path in self.allPaths():
+            print "  " + path;
 
     def readFileIntoString(self, path):
-        assertPath(path);
+        assertPathExists(path);
         with open (path, "r") as myfile:
             data=myfile.read().replace('\n', '')
         return data;
 
     def __init__(self, path):
-        path = path.strip();
-        jsonString = self.readFileIntoString(path);
+        filepath = path.strip();
+        jsonString = self.readFileIntoString(filepath);
         self._piece = json.loads(jsonString)
+        self._folder = os.path.dirname(filepath)
 
-class Script :
+    def subDirectoryPath(self, relativePath) :
+        path = os.path.join(self.folderPath(), relativePath);
+        return assertPathExists(path);
+
+
+class ScriptBase :
+    _pieces = []
 
     def __init__(self):
         self.checkParams();
@@ -88,7 +117,12 @@ class Script :
 
     def findFishLamp(self):
         fishlamp = subprocess.check_output(["fishlamp", "find", "-a"]).strip();
-        assertPath(fishlamp);
+        assertPathExists(fishlamp);
+        return fishlamp;
+
+    def fishLampRelativePath(self):
+        fishlamp = subprocess.check_output(["fishlamp", "find", "-r"]).strip();
+        assertPathExists(fishlamp);
         return fishlamp;
 
     def findFiles(self, directory, pattern):
@@ -100,19 +134,41 @@ class Script :
                     filename = os.path.join(root, basename);
                     yield filename;
 
-    def findPieces(self):
+    def allPieces(self):
+
+        if len(self._pieces) > 0:
+            return self._pieces;
+
         fishlamp = self.findFishLamp();
         verbose("found " + fishlamp)
 
-        pieces = [];
+        self._pieces = [];
         for filename in self.findFiles(fishlamp, "fishlamp-piece.json"):
-            print filename;
-
-            assertPath(filename);
+#            print filename;
+            assertPathExists(filename);
             piece = Piece(filename);
-            pieces.append(piece);
+            self._pieces.append(piece);
 
-        return pieces;
+        return self._pieces;
 
+    def findPieceForName(self, name):
 
-    
+        for piece in self.allPieces():
+            if piece.name() == name:
+                return piece;
+
+    def corePiece(self):
+        return assertNotNone(self.findPieceForName("fishlamp-core"), "unabled to find fishlamp-core piece");
+
+    def hasParameterAtIndex(self, index):
+        if len(sys.argv) > index:
+            return True;
+        return False;
+
+    def parameterAtIndex(self, index):
+        parm = sys.argv[index];
+        assertNotNone(parm, "parameter at Index: " + index);
+        return parm;
+
+    def workingDirectory(self):
+        return os.getcwd();
