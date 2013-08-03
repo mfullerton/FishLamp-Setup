@@ -172,3 +172,12 @@ class ScriptBase :
 
     def workingDirectory(self):
         return os.getcwd();
+
+    def scriptsPath(self) :
+        path = subprocess.check_output(["fishlamp", "scripts-path"]).strip();
+        assertPathExists(path);
+        return path;
+
+    def templatePath(self, subDir) :
+        return assertPathExists(os.path.join(os.path.join(self.scriptsPath(), "templates"), subDir));
+

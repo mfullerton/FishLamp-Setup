@@ -57,19 +57,22 @@ class Script(FishLamp.ScriptBase):
         return paths;
 
     def generateFileWithPath(self, destFolder, path) :
-        f = open(os.path.join(destFolder, "FISHLAMP_PIECES_PATHS.xcconfig"),'w');
+        filePath = os.path.join(destFolder, "FISHLAMP_PIECES_PATHS.xcconfig");
+        f = open(filePath,'w');
         f.write("# generated on " + "date" + "\n\n");
         f.write(path);
+
+        FishLamp.assertPathExists(filePath);
 
     def run(self):
 
         destDir = self.destinationPath();
         self.removeDestinationPath(destDir);
 
-        srcPath = self.corePiece().subDirectoryPath("setup/XcodeConfigs");
+        srcPath = self.templatePath("XcodeConfigs");
 
-        print srcPath
-        print destDir
+#        print srcPath
+#        print destDir
 
         copyanything(srcPath, destDir)
 
@@ -77,11 +80,13 @@ class Script(FishLamp.ScriptBase):
 
         configPath = "FISHLAMP_PIECES_PATHS = "
         for path in self.arrayOfPaths():
-            configPath += os.path.join(fl, path) + "/** "
-
-#        print configPath;
+            relativePath = os.path.join(fl, path)
+            print "# added path: \"" + relativePath + "\"";
+            configPath += relativePath + "/** "
 
         self.generateFileWithPath(destDir, configPath);
+
+        print "# updated folder: " + destDir;
 
 
 script = Script();
