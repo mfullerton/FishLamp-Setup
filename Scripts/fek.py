@@ -40,7 +40,6 @@ class Script(FishLampScript.Script):
                     print "#### " + folder + " ####";
 
 
-#        os.chdir("..");
         print "# " + str(len(clean)) + " clean repos:"
         for f in clean:
             print "  " + os.path.relpath(f);
@@ -62,11 +61,17 @@ class Script(FishLampScript.Script):
             self.status(folders, True)
         else:
             for folder in folders:
-                os.chdir(folder)
+
+                f = os.path.relpath(folder)
+
+                dir = os.getcwd();
+                os.chdir(folder);
+
 
                 print ""
-                print "#### " + folder + " ####"
-                FishLampGit.execute(self.scriptArguments());
-                print "#### " + folder + " ####"
+                print f
+                (out, error) = FishLampGit.execute(self.scriptArguments());
+                os.chdir(dir);
+                print f
 
 Script().run();
