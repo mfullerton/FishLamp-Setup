@@ -18,14 +18,47 @@ class Script(FishLampScript.Script):
     def helpString(self):
         return "finds all installed FishLamp pieces";
 
+    def status(self, folders):
+        count = 0;
+        allClear = True;
+
+        dirty = []
+
+        for folder in folders:
+            count += 1;
+            os.chdir(folder)
+            (out, error) = FishLampGit.executeSilent(self.scriptArguments());
+
+            if out.find("nothing to commit") >= 0:
+                d = 0;
+            #    print "# " + folder + " clean"
+            else:
+                allClear = False;
+                print "#### " + folder + " ####"
+                print out;
+                print "#### " + folder + " ####"
+                dirty.append(folder)
+
+        if allClear:
+            print "# all clear (" + str(count) + " repos checked)"
+        else:
+            print "# dirty repos:"
+            for f in dirty:
+                print f;
+
     def run(self):
 
         folders = FishLampGit.findGitFolders();
-        for folder in folders:
-            print ""
-            print "#### " + folder + " ####"
-            os.chdir(folder)
-            FishLampGit.execute(self.scriptArguments());
-            print "#### " + folder + " ####"
+
+        if self.hasParameter("status"):
+            self.status(folders);
+        else:
+            for folder in folders:
+                os.chdir(folder)
+
+                print ""
+                print "#### " + folder + " ####"
+                FishLampGit.execute(self.scriptArguments());
+                print "#### " + folder + " ####"
 
 Script().run();

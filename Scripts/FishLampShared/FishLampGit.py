@@ -19,11 +19,10 @@ import re
 def _print(str) :
     if str:
         str = str.strip();
-
         if len(str):
             print str;
 
-def execute(args) :
+def executeSilent(args) :
 
     cmd = "/usr/bin/git";
     for arg in args:
@@ -36,10 +35,31 @@ def execute(args) :
     pr = subprocess.Popen(cmd, cwd = os.getcwd(), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     (out, error) = pr.communicate()
 
-    _print(out);
-    _print(error);
+    if out:
+        out = out.strip();
+        if len(out) == 0:
+            out = None;
+
+    if error:
+        error = error.strip();
+
+        if len(error) == 0:
+            error = None;
 
     return (out, error);
+
+
+def execute(args) :
+    (out, error) = executeSilent(args);
+    if(out):
+        print out;
+
+    if(error):
+        print error;
+    
+    return (out, error);
+
+
 
 #    (out, error) =
 
