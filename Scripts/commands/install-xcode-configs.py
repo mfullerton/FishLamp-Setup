@@ -12,28 +12,22 @@ scriptName = os.path.basename(sys.argv[0])
 scriptPath = os.path.dirname(sys.argv[0])
 sharedPath = os.path.join(scriptPath, "../FishLampShared/")
 sys.path.append(os.path.abspath(sharedPath))
+
 import FishLamp
+import FishLampUtils
+import FishLampPiece;
+import FishLampScript
 
+import datetime
+import time
 
-import shutil
-
-import shutil, errno
-
-def copyanything(src, dst):
-    try:
-        shutil.copytree(src, dst)
-    except OSError as exc: # python >2.5
-        if exc.errno == errno.ENOTDIR:
-            shutil.copy(src, dst)
-        else: raise
-
-class Script(FishLamp.ScriptBase):
+class Script(FishLampScript.Script):
 
     def helpString(self):
         return "installs or updates Xcode configs for FishLamp";
 
     def destinationPath(self):
-        destinationDir = self.workingDirectory();
+        destinationDir = FishLamp.workingDirectory();
 
         if self.hasParameterAtIndex(1) :
             destinationDir = self.parameterAtIndex(1);
@@ -41,16 +35,9 @@ class Script(FishLamp.ScriptBase):
 
         return os.path.join(destinationDir, "FishLampXcodeConfigs");
 
-    def removeDestinationPath(self, path):
-        path = path.strip();
-        FishLamp.assertNotNone(path, "path is empty");
-        
-        if len(path) > 1 and os.path.exists(path):
-            shutil.rmtree(path)
-
     def arrayOfPaths(self) :
         paths = []
-        for piece in self.allPieces():
+        for piece in FishLampPiece.allPieces():
             for aPath in piece.allPaths():
                 paths.append(aPath);
 
@@ -59,7 +46,7 @@ class Script(FishLamp.ScriptBase):
     def generateFileWithPath(self, destFolder, path) :
         filePath = os.path.join(destFolder, "FISHLAMP_PIECES_PATHS.xcconfig");
         f = open(filePath,'w');
-        f.write("# generated on " + "date" + "\n\n");
+        f.write("# generated on " + datetime.datetime.now() + "\n\n");
         f.write(path);
 
         FishLamp.assertPathExists(filePath);
@@ -67,30 +54,26 @@ class Script(FishLamp.ScriptBase):
     def run(self):
 
         destDir = self.destinationPath();
-        self.removeDestinationPath(destDir);
+
+        FishLamp.deleteDirectory(destDir);
 
         srcPath = self.templatePath("XcodeConfigs");
+        FishLamp.copyFileOrDirectory(srcPath, destDir)
 
-#        print srcPath
-#        print destDir
-
-        copyanything(srcPath, destDir)
-
-        fl = self.fishLampRelativePath();
+        fl = FishLampPieces.relativePathToPiecesFolder();
 
         configPath = "FISHLAMP_PIECES_PATHS = "
         for path in self.arrayOfPaths():
-            relativePath = os.path.join(fl, path)
-            print "# added path: \"" + relativePath + "\"";
-            configPath += relativePath + "/** "
+            relativePathToPiecesFolder = os.path.join(fl, path)
+            print "# added path: \"" + relativePathToPiecesFolder + "\"";
+            configPath += relativePathToPiecesFolder + "/** "
 
         self.generateFileWithPath(destDir, configPath);
 
         print "# updated folder: " + destDir;
 
 
-script = Script();
-script.run();
+Script().run();
 
 
 

@@ -1,3 +1,47 @@
+#!/usr/bin/python
+
+
+# begin boilerplate
+import sys
+import os
+scriptName = os.path.basename(sys.argv[0])
+scriptPath = os.path.dirname(sys.argv[0])
+sharedPath = os.path.join(scriptPath, "../FishLampShared/")
+sys.path.append(os.path.abspath(sharedPath))
+import FishLamp
+import FishLampScript
+import FishLampPiece
+import FishLampUtils
+
+#end boilerplate
+
+class Script(FishLampScript.Script):
+
+    def helpString(self):
+        return "finds all installed FishLamp pieces";
+
+    def run(self):
+
+        fishlamp = None;
+        if self.hasParameterAtIndex(1) and self.parameterAtIndex(1, "expecting -r") == "-r":
+            fishlamp = FishLampPiece.relativePathToPiecesFolder();
+        else:
+            fishlamp = FishLampPiece.absolutePathToPiecesFolder();
+
+        if fishlamp:
+            print fishlamp;
+        else:
+            FishLampUtils.printError(FishLampPiece.folderName() + " not found");
+
+Script().run();
+
+
+
+
+
+
+"""
+
 #!/bin/sh
 
 option="$1"
@@ -57,3 +101,4 @@ done
 echo "FishLamp not found"
 exit 1
 
+"""

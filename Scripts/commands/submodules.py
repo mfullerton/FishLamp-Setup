@@ -1,3 +1,39 @@
+#!/usr/bin/python
+
+# begin boilerplate
+import sys
+import os
+scriptName = os.path.basename(sys.argv[0])
+scriptPath = os.path.dirname(sys.argv[0])
+sharedPath = os.path.join(scriptPath, "../FishLampShared/")
+sys.path.append(os.path.abspath(sharedPath))
+import FishLampGit
+import FishLampScript
+
+#end boilerplate
+
+class Script(FishLampScript.Script):
+
+    def helpString(self):
+        return "lists the current FishLamp submodules in use by the repo";
+
+    def run(self):
+        submodules = FishLampGit.submodules();
+        for submodule in submodules:
+            print submodule;
+
+
+Script().run();
+
+
+
+
+
+
+
+
+"""
+
 #!/bin/sh
 
 #  fishlamp-submodules.sh
@@ -36,3 +72,4 @@ fi
 
 
 
+"""
