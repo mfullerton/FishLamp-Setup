@@ -18,40 +18,48 @@ class Script(FishLampScript.Script):
     def helpString(self):
         return "finds all installed FishLamp pieces";
 
-    def status(self, folders):
-        count = 0;
-        allClear = True;
-
-        dirty = []
+    def status(self, folders, quick):
+        dirty = [];
+        clean = [];
 
         for folder in folders:
-            count += 1;
-            os.chdir(folder)
-            (out, error) = FishLampGit.executeSilent(self.scriptArguments());
+
+            dir = os.getcwd();
+            os.chdir(folder);
+            (out, error) = FishLampGit.executeSilent(["status"]);
+            os.chdir(dir);
 
             if out.find("nothing to commit") >= 0:
-                d = 0;
-            #    print "# " + folder + " clean"
+                clean.append(folder);
             else:
-                allClear = False;
-                print "#### " + folder + " ####"
-                print out;
-                print "#### " + folder + " ####"
-                dirty.append(folder)
+                dirty.append(folder);
 
-        if allClear:
-            print "# all clear (" + str(count) + " repos checked)"
+                if quick == False:
+                    print "#### " + folder + " ####";
+                    print out;
+                    print "#### " + folder + " ####";
+
+
+#        os.chdir("..");
+        print "# " + str(len(clean)) + " clean repos:"
+        for f in clean:
+            print "  " + os.path.relpath(f);
+
+        if len(dirty) == 0:
+            print "# all clear!"
         else:
-            print "# dirty repos:"
+            print "# " + str(len(dirty)) + " dirty repos:"
             for f in dirty:
-                print f;
+                print "  " + os.path.relpath(f);
 
     def run(self):
 
         folders = FishLampGit.findGitFolders();
 
         if self.hasParameter("status"):
-            self.status(folders);
+            self.status(folders, False);
+        elif self.hasParameter("check"):
+            self.status(folders, True)
         else:
             for folder in folders:
                 os.chdir(folder)
