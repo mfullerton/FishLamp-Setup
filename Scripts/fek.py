@@ -20,21 +20,12 @@ class Script(FishLampScript.Script):
 
     def run(self):
 
-#        if self.hasParameter("-r"):
-#            args = self.scriptArguments();
-#            args.remove("-r");
-
-        print self.scriptArguments();
-        print sys.argv;
-
         folders = FishLampGit.findGitFolders();
         for folder in folders:
+            print ""
             print "#### " + folder + " ####"
             os.chdir(folder)
             FishLampGit.execute(self.scriptArguments());
-#        else:
-#            FishLampGit.execute(self.scriptArguments());
-
-            
+            print "#### " + folder + " ####"
 
 Script().run();

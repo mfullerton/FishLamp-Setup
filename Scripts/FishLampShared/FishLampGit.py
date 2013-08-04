@@ -16,6 +16,13 @@ import FishLamp
 import FishLampUtils
 import re
 
+def _print(str) :
+    if str:
+        str = str.strip();
+
+        if len(str):
+            print str;
+
 def execute(args) :
 
     cmd = "/usr/bin/git";
@@ -29,11 +36,8 @@ def execute(args) :
     pr = subprocess.Popen(cmd, cwd = os.getcwd(), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     (out, error) = pr.communicate()
 
-    if out:
-        print out;
-
-    if error:
-        print error;
+    _print(out);
+    _print(error);
 
     return (out, error);
 
