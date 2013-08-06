@@ -73,6 +73,7 @@ append_path_to_file "$HOME/.bash_profile"
 
 # c and korn
 append_path_to_file "$HOME/.login"
+append_path_to_file "$HOME/.profile"
 
 echo "# for your copy/paste pleasure: "
 echo "open \"$DEST_PATH\""
